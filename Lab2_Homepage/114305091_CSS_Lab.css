@@ -1,0 +1,61 @@
+@media all{
+	body{
+		color:Black;
+		background-color: Gainsboro;
+		font-family:tahoma, sans-serif, arial;}
+	div{color:black;
+	background-color:PaleTurquoise ;
+}
+div h1{
+	font-family:tahoma, sans-serif, arial;
+	margin:0;
+ 	padding: 10px 0;}
+div p{
+	margin:0;
+ 	padding: 10px 0;}
+ul{color:black; 
+	background-color:LemonChiffon;
+ 	list-style: none;
+ 	justify-content: center;
+  	padding-top: 20px ;
+  	padding-bottom:20px ;
+ 	margin: 0;
+  	display: flex;       
+  	gap: 120px;
+}
+.navbar li {
+    position: relative;
+    cursor: pointer;
+}
+.navbar li ul {
+    display: none;
+    background-color: GoldenRod;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    min-width: 150px;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 10em;
+}
+
+.navbar li:hover > ul {
+    display: block;
+}
+.navbar li ul li {
+    padding: 10px;
+    color: white;
+    white-space: nowrap;
+}
+.navbar li ul li:hover {
+	color:black;
+    background-color: PaleGoldenRod;
+}
+}
+@media print {
+   
+    .navbar {display: none;}
+    a{text-decoration: underline;}
+   
+}
