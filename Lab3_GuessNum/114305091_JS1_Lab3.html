@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+	<h1>11430591_Number Guessing Game</h1>
+	<div id="resultBox"></div>
+<script>
+	var answer = Math.floor(Math.random() * 100) + 1;
+	var chances = 7;
+	var min = 1;
+	var max = 100;
+	console.log(answer);
+	while(chances>0){
+		var input = window.prompt(
+            "請輸入 " + min + " ~ " + max + "之間的整數，\n" +
+            "你還有 " + chances +"次機會。"
+        );
+        if (input === null) break;
+		input = input.trim();  
+        var guess = parseInt(input);
+		if (input === "" || isNaN(input)){
+			alert("請輸入有效範圍內的數字");
+			continue;
+		}
+		if(guess<min || guess>max){
+			alert("請輸入範圍內的數字");
+			continue;
+		}
+			if(guess>answer){
+				max = guess - 1;	
+				chances--;
+			}else{
+				min = guess + 1;
+				chances--;
+			}
+			if(guess==answer){
+				alert("恭喜你答對了！正確答案是" + answer);
+				document.getElementById("resultBox").innerHTML = "<img src='./images/correct.jpg' width='200'>";
+			break;
+			}
+			if(chances ==0){
+				alert("次數用完！正確答案是: " + answer);
+				document.getElementById("resultBox").innerHTML = "<img src='./images/wrong.jpg' width='200'>";
+
+			}
+		
+	}
+</script>
+</body>
+</html>
