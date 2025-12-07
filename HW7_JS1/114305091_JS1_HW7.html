@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>XAXB Guessing Game</title>
+</head>
+<body>
+	<h1>114305091_HW7_1A2B</h1>
+	<input type="text" id="inputField" placeholder="Enter 4 unique numbers">
+	<button onclick="play()">Guess!</button>
+<div id="recordTitle" style="display:none;">Game record:</div>
+<div id="record"></div>
+	<script>
+    let answer = generateAnswer();
+    let guessCount = 0;
+    console.log("答案：", answer);
+
+    function generateAnswer() {
+        let digits = ["0","1","2","3","4","5","6","7","8","9"];
+        let result = "";
+
+        for (let i = 0; i < 4; i++) {
+            let index = Math.floor(Math.random() * digits.length);
+            result += digits[index];
+            digits.splice(index, 1);
+        }
+        return result;
+    }
+    function isValid(str) {
+    	if (str.length !== 4) return false;
+    	if (!/^\d{4}$/.test(str)) return false;
+    	return new Set(str).size == 4;
+	}
+	function checkAB(guess, ans) {
+    	let A = 0, B = 0;
+
+    	for (let i = 0; i < 4; i++) {
+        if (guess[i] == ans[i]) {
+            A++;
+        } else if (ans.includes(guess[i])) {
+            B++;
+        }
+   		}
+    	return `${A}A${B}B`;
+	}
+	function play() {
+    let inputField = document.getElementById("inputField");
+    let guess = inputField.value.trim();
+    if (!isValid(guess)) {
+        alert("無效輸入！必須是四位不重複數字");
+        inputField.value = "";
+        return;
+    }
+
+    guessCount++;
+    if (guessCount == 1) {
+    document.getElementById("recordTitle").style.display = "block";
+}
+    let result = checkAB(guess, answer);
+
+    let recordBox = document.getElementById("record");
+    recordBox.innerHTML += `第${guessCount}次: ${guess} → ${result}<br>`;
+
+    if (result == "4A0B") {
+        alert(`恭喜猜對！總共用了 ${guessCount} 次`);
+    }
+
+    inputField.value = "";
+	}
+
+</script>
+</body>
+</html>
