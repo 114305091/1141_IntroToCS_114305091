@@ -47,7 +47,7 @@ function calculate() {
             break;
         case '/':
             res = divide(a, b);
-            if (res === null) return; // 除以 0
+            if (res === null) return;
             break;
         default:
             alert("Unknown operator");
